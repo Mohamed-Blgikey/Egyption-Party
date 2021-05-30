@@ -1,3 +1,20 @@
+
+$(`#btnUp`).click(function () {
+    $(`body,html`).animate({ scrollTop: 0 }, 1000)
+
+});
+
+let secondSection = $(`#details`).offset().top;
+$(window).scroll(function () {
+    let wScroll = $(window).scrollTop();
+    if ($(window).scrollTop() > secondSection / 2) {
+        $(`#btnUp`).fadeIn(1000)
+    }
+    else {
+        $(`#btnUp`).fadeOut(1000)
+    }
+});
+
 //------------ nav & home
 
 let navWidth = $(`nav`).innerWidth();
@@ -17,6 +34,13 @@ $(`#close`).click(function () {
     $(`nav`).css(`left`, `-${navWidth}px`);
     $(`#home`).css(`left`, `0px`);
     $(`#home`).css(`width`, `100%`);
+});
+
+
+$(`nav a`).click(function () {
+    let hrefLink = $(this).attr("href");
+    let sectionTop = $(hrefLink).offset().top;
+    $(`html,body`).animate({ scrollTop: sectionTop }, 1000)
 });
 
 
@@ -41,10 +65,9 @@ $(`.show`).click(function (e) {
 /**--------------- duration */
 
 function myBirthDay() {
-    let birthDayTime = new Date(`2021-6-29`).getTime();//milisecond from 1 1 1970 to 29 6 2021
+    let birthDayTime = new Date(`2041-6-29`).getTime();//milisecond from 1 1 1970 to 29 6 2021
     let cuurentDay = new Date();
-    // console.log(eventDay);
-    // console.log(cuurentDay);
+
     let timeForcurrentDay = cuurentDay.getTime();//milisecond from 1 1 1970 to now
     let remain = birthDayTime - timeForcurrentDay;//milisecond now to 29 6 2021
     // console.log(remain);
@@ -52,13 +75,9 @@ function myBirthDay() {
 
 
     let second = Math.floor((remain / 1000));
-    // كد معايا الوقت ال باقى  من انهردا لعيد ميلادى بالثوانى
     let minute = Math.floor(second / 60);
-    //الدقايق
     let hour = Math.floor(minute / 60);
-    //الساعات
     let day = Math.floor(hour / 24);
-    //الايام
     second = 59 - cuurentDay.getSeconds();
     minute = 59 - cuurentDay.getMinutes();
     hour = 23 - cuurentDay.getHours();
@@ -86,5 +105,3 @@ $(`textarea`).keyup(function () {
     }
 
 });
-
-// console.log(Date.now());
